@@ -1,0 +1,32 @@
+name: prod_software_rutinator
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+  
+dependencies:
+  flutter:
+    sdk: flutter
+  splashify: ^0.0.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/brawlAssets/
+    - assets/CCAssets/
+    - assets/CRAssets/
+  fonts:
+    - family: brawl
+      fonts:
+        - asset: assets/fonts/Nougat-ExtraBlack.ttf
+    - family: clash
+      fonts:
+        - asset: assets/fonts/supercell-magic.ttf

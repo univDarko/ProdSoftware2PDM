@@ -32,6 +32,7 @@ Se tendrán 4 juegos de Supercell para crear rutinas y todo, siendo estos Clash 
 
 ## Diagrama de Flujo
 
-(pronto)
+![image](https://github.com/univDarko/ProdSoftware2PDM/assets/118616932/f3237a63-4b34-4607-9d5c-921f96e4bf6b)
+
 
 

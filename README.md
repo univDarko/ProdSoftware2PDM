@@ -26,7 +26,12 @@ Se tendrán 4 juegos de Supercell para crear rutinas y todo, siendo estos Clash 
 - Forma de añadir más juegos
 
 
-## Diagrama de Clases
+## Diagrama de Arquitectura de Información
 
-(Diagrama pronto)
+![image](https://github.com/univDarko/ProdSoftware2PDM/assets/118616932/5e04d132-c9d6-494e-b250-2ff8f308938d)
+
+## Diagrama de Flujo
+
+(pronto)
+
 

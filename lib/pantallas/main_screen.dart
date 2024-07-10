@@ -3,6 +3,7 @@ import 'package:prod_software_rutinator/pantallas/login_screen.dart';
 import 'package:prod_software_rutinator/pantallas/screen1.dart';
 import 'package:prod_software_rutinator/pantallas/screen2.dart';
 import 'package:prod_software_rutinator/pantallas/screen3.dart';
+import 'package:prod_software_rutinator/pantallas/screen4.dart';
 import 'package:prod_software_rutinator/data/userdatabase.dart';
 
 class MainScreen extends StatelessWidget{
@@ -55,6 +56,9 @@ class MyMainScreen extends State<MyHomePage> {
         case 2:
           textColor = Colors.white;
         break;
+        case 3:
+          textColor = Colors.black87;
+        break;
       }
     });
   }
@@ -82,6 +86,11 @@ class MyMainScreen extends State<MyHomePage> {
       child: Image.asset('assets/CRAssets/clashroyaleicon.png', width: 30, height: 30,)
       ), 
       label: "Clash Royale"),
+      NavigationDestination(icon: ClipRRect(
+      borderRadius: BorderRadius.circular(8.0),
+      child: Image.asset('assets/SBAssets/squadbustersicon.png', width: 30, height: 30,)
+      ), 
+      label: "Squad Busters"),
   ];
 
 
@@ -109,7 +118,8 @@ class MyMainScreen extends State<MyHomePage> {
           children: [
             Screen1(userdb: userdb,),
             Screen2(userdb: userdb,),
-            Screen3(userdb: userdb,)
+            Screen3(userdb: userdb,),
+            Screen4(userdb: userdb,)
           ],
         ),
         bottomNavigationBar: NavigationBar(
@@ -122,8 +132,8 @@ class MyMainScreen extends State<MyHomePage> {
               curve: Curves.ease);
           },
           surfaceTintColor: Colors.blue,
-          indicatorColor: Colors.amber,
-          shadowColor: Colors.amberAccent,
+          indicatorColor: Colors.red,
+          shadowColor: Colors.redAccent,
         ),
         drawer: Drawer(
           backgroundColor: Colors.white,

@@ -10,11 +10,20 @@ dependencies:
   flutter:
     sdk: flutter
   splashify: ^0.0.3
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/RutinatorIcon.png"
+  min_sdk_android: 16 # android min sdk min:16, default 21
 
 flutter:
   uses-material-design: true
@@ -23,6 +32,7 @@ flutter:
     - assets/brawlAssets/
     - assets/CCAssets/
     - assets/CRAssets/
+    - assets/SBAssets/
   fonts:
     - family: brawl
       fonts:
@@ -30,3 +40,6 @@ flutter:
     - family: clash
       fonts:
         - asset: assets/fonts/supercell-magic.ttf
+    - family : squad
+      fonts:
+        - asset: assets/fonts/SquadLatin-Black.otf

@@ -37,6 +37,22 @@ class RoutinePageState extends State<RoutinePage>{
     return userdb.currentusername!;
   }
 
+  IconData? iconPick(int difficulty){
+    switch (difficulty){
+      case 1:
+        return Icons.sentiment_very_satisfied_sharp;
+      break;
+      case 2:
+        return Icons.waves_outlined;
+      break;
+      case 3:
+        return Icons.local_fire_department_sharp;
+      break;
+    }
+
+    return null;
+  }
+
   @override
   // ignore: avoid_renaming_method_parameters
   Widget build(BuildContext context_) {
@@ -73,7 +89,7 @@ class RoutinePageState extends State<RoutinePage>{
                           child: Image.asset("assets/SBAssets/characterexample.png")
                         ),
                         ListTile(
-                          leading: const Icon(Icons.water),
+                          leading: Icon(iconPick(userdb.currentUser!.getRoutinesFromGame(4)[0].diff)),
                           title: Text(userdb.currentUser!.getRoutinesFromGame(4)[0].title),
                           subtitle: ListView(
                             shrinkWrap: true,
@@ -94,7 +110,7 @@ class RoutinePageState extends State<RoutinePage>{
                           ),
                         ),
                         ListTile(
-                          leading: const Icon(Icons.water),
+                          leading: Icon(iconPick(userdb.currentUser!.getRoutinesFromGame(4)[1].diff)),
                           title: Text(userdb.currentUser!.getRoutinesFromGame(4)[1].title),
                           subtitle: ListView(
                             shrinkWrap: true,
@@ -115,7 +131,7 @@ class RoutinePageState extends State<RoutinePage>{
                           ),
                         ),
                         ListTile(
-                          leading: const Icon(Icons.water),
+                          leading: Icon(iconPick(userdb.currentUser!.getRoutinesFromGame(4)[2].diff)),
                           title: Text(userdb.currentUser!.getRoutinesFromGame(4)[2].title),
                           subtitle: ListView(
                             shrinkWrap: true,

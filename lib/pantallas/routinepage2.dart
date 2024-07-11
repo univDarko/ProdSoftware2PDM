@@ -36,6 +36,21 @@ class RoutinePageState extends State<RoutinePage>{
     return userdb.currentusername!;
   }
 
+  IconData? iconPick(int difficulty){
+    switch (difficulty){
+      case 1:
+        return Icons.sentiment_very_satisfied_sharp;
+      break;
+      case 2:
+        return Icons.waves_outlined;
+      break;
+      case 3:
+        return Icons.local_fire_department_sharp;
+      break;
+    }
+
+    return null;
+  }
   
   
   @override
@@ -74,7 +89,7 @@ class RoutinePageState extends State<RoutinePage>{
                           child: Image.asset("assets/CCAssets/troopexample.png")
                         ),
                         ListTile(
-                          leading: const Icon(Icons.water),
+                          leading: Icon(iconPick(userdb.currentUser!.getRoutinesFromGame(2)[0].diff)),
                           title: Text(userdb.currentUser!.getRoutinesFromGame(2)[0].title),
                           subtitle: ListView(
                             shrinkWrap: true,
@@ -95,7 +110,7 @@ class RoutinePageState extends State<RoutinePage>{
                           ),
                         ),
                         ListTile(
-                          leading: const Icon(Icons.water),
+                          leading: Icon(iconPick(userdb.currentUser!.getRoutinesFromGame(2)[1].diff)),
                           title: Text(userdb.currentUser!.getRoutinesFromGame(2)[1].title),
                           subtitle: ListView(
                             shrinkWrap: true,
@@ -116,7 +131,7 @@ class RoutinePageState extends State<RoutinePage>{
                           ),
                         ),
                         ListTile(
-                          leading: const Icon(Icons.water),
+                          leading: Icon(iconPick(userdb.currentUser!.getRoutinesFromGame(2)[2].diff)),
                           title: Text(userdb.currentUser!.getRoutinesFromGame(2)[2].title),
                           subtitle: ListView(
                             shrinkWrap: true,

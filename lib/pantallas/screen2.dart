@@ -39,7 +39,7 @@ class Screen2 extends StatelessWidget{
                         ),
                         const SizedBox(height: 1),
                         const Text(
-                          "Ingrese su codigo de cuenta de Clash of Clans", 
+                          "Progreso de Rutina:", 
                           textScaler: TextScaler.linear(2),
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -53,15 +53,15 @@ class Screen2 extends StatelessWidget{
                               children: [
                                 const SizedBox(height: 30),
                                 Text(
-                                  userdb.currentUser!.getRoutinesFromGame(2)[0].descr,
+                                  userdb.currentUser!.getMostAdvancedRoutine(2).descr,
                                   textAlign: TextAlign.center,
                                   textScaler: const TextScaler.linear(1.3),
                                   ),
                                 Slider(
-                                  value: userdb.currentUser!.getRoutinesFromGame(2)[0].progress,
+                                  value: userdb.currentUser!.getMostAdvancedRoutine(2).progress,
                                   max: 100,
                                   divisions: 100,
-                                  label: userdb.currentUser!.getRoutinesFromGame(2)[0].progress.round().toString(),
+                                  label: userdb.currentUser!.getMostAdvancedRoutine(2).progress.round().toString(),
                                   onChanged: null
                                 )
                               ],

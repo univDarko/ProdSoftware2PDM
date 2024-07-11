@@ -38,7 +38,7 @@ class Screen1 extends StatelessWidget{
                           height: 180,
                         ),
                         const Text(
-                          "Progreso de Rutina más reciente:", 
+                          "Progreso de Rutina:", 
                           textScaler: TextScaler.linear(2),
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -51,15 +51,15 @@ class Screen1 extends StatelessWidget{
                               children: [
                                 const SizedBox(height: 30),
                                 Text(
-                                  userdb.currentUser!.getRoutinesFromGame(1)[0].descr,
+                                  userdb.currentUser!.getMostAdvancedRoutine(1).descr,
                                   textAlign: TextAlign.center,
                                   textScaler: const TextScaler.linear(1.3),
                                   ),
                                 Slider(
-                                  value: userdb.currentUser!.getRoutinesFromGame(1)[0].progress,
+                                  value: userdb.currentUser!.getMostAdvancedRoutine(1).progress,
                                   max: 100,
                                   divisions: 100,
-                                  label: userdb.currentUser!.getRoutinesFromGame(1)[0].progress.round().toString(),
+                                  label: userdb.currentUser!.getMostAdvancedRoutine(1).progress.round().toString(),
                                   onChanged: null
                                 )
                               ],

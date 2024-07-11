@@ -74,4 +74,15 @@ class User{
 
     return list;
   }
+
+  Routine getMostAdvancedRoutine(int currentGame){
+    Routine auxR = Routine("null", "null", 0, 0);
+    for (var routine in listRoutines) {
+      if (routine.progress >= auxR.progress && routine.fromGame == currentGame){
+        auxR = routine;
+      }
+    }
+
+    return auxR;
+  }
 }

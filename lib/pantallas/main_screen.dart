@@ -146,8 +146,8 @@ class MyMainScreen extends State<MyHomePage> {
                   color: Theme.of(context).colorScheme.inversePrimary.computeLuminance() > 0.5 ? Colors.black : Colors.white)), 
                 accountEmail: null,
                 currentAccountPicture: const Icon(Icons.face),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.inversePrimary
+                decoration: const BoxDecoration(
+                  color: Colors.red,
                   ),
                 ),
               Card(
@@ -156,7 +156,7 @@ class MyMainScreen extends State<MyHomePage> {
                         onTap: () {Navigator.pushAndRemoveUntil(
                           context, 
                           MaterialPageRoute<dynamic>(
-                            builder: (BuildContext context) => const LoginScreen()), 
+                            builder: (BuildContext context) => LoginScreen(userdb: userdb,)), 
                           (route) => false);},
                       ),
               ),

@@ -46,18 +46,27 @@ class Screen3 extends StatelessWidget{
                         ),
                         const SizedBox(height: 30),
                         Container(
-                          padding: const EdgeInsets.all(10),
-                          child: TextField(
-                            style: const TextStyle(color: Colors.black),
-                            controller: clashRApiController,
-                            decoration: const InputDecoration(
-                              fillColor: Colors.white,
-                              filled: true,
-                              border: OutlineInputBorder(),
-                              labelText: 'Codigo de Usuario',
-                              //errorText: brawlApiController.text.isEmpty ? "Añada su Nombre de Usuario" : null,
+                          padding: const EdgeInsets.all(5),
+                          height: 150,
+                          child: Card(
+                            child: Column(
+                              children: [
+                                const SizedBox(height: 30),
+                                Text(
+                                  userdb.currentUser!.getRoutinesFromGame(3)[0].descr,
+                                  textAlign: TextAlign.center,
+                                  textScaler: const TextScaler.linear(1.3),
+                                  ),
+                                Slider(
+                                  value: userdb.currentUser!.getRoutinesFromGame(3)[0].progress,
+                                  max: 100,
+                                  divisions: 100,
+                                  label: userdb.currentUser!.getRoutinesFromGame(3)[0].progress.round().toString(),
+                                  onChanged: null
+                                )
+                              ],
                             ),
-                          ),
+                          )
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(

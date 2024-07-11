@@ -1,33 +1,39 @@
-
 class Routine{
 
   String title = "null";
   String descr = "null";
-  bool isdone = false;
-  String whoiscompleting = "null";
+  double progress = 0;
+  int diff = 0;
+  int fromGame = 0;
 
-  Routine(String title_, String desc, String name){
+  Routine(String title_, String desc, int difficulty, int fromgame){
     title = title_;
     descr = desc;
-    isdone = false;
-    whoiscompleting = name;
+    progress = 0;
+
+    //1 = easy, 2 = med, 3 = hard
+    diff = difficulty;
+    //1 = BS, 2 = CC, 3 = CR, 4 = SB 
+    fromGame = fromgame;
   }
 
-  String showTitle(){
+  String get showTitle{
     return title;
   }
 
-  String showDescription(){
+  String get showDescription{
     return descr;
   }
 
-  bool toggleState() => !isdone;
-
-  bool showStateCompletion(){
-    return isdone;
+  double get progressrate{
+    return progress;
   }
 
-  String showUserCompletingRoutine(){
-    return whoiscompleting;
+  set changeProgress(double to){
+    progress = to;
+  }
+
+  bool showStateCompletion(){
+    return progress >= 100 ? true : false;
   }
 }

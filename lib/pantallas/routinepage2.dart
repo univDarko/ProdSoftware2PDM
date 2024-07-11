@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prod_software_rutinator/data/routine.dart';
 import 'package:prod_software_rutinator/data/userdatabase.dart';
 
 const String clashclansinfo = "Clash of Clans "
@@ -8,9 +7,28 @@ const String clashclansinfo = "Clash of Clans "
 "y el 8 de octubre para dispositivos Android. En este mismo juego se basó "
 "Clash Royale.";
 
-// ignore: must_be_immutable
 class RoutinePage2 extends StatelessWidget{
-  RoutinePage2({super.key, required this.userdb});
+  const RoutinePage2({super.key, required this.userdb});
+  final Userdatabase userdb;
+
+  @override
+  Widget build(BuildContext context){
+    return RoutinePage(userdb: userdb,);
+  }
+}
+
+class RoutinePage extends StatefulWidget{
+  const RoutinePage({super.key, required this.userdb});
+  final Userdatabase userdb;
+
+  @override
+  // ignore: no_logic_in_create_state
+  State<RoutinePage> createState() => RoutinePageState(userdb: userdb,);
+}
+
+// ignore: must_be_immutable
+class RoutinePageState extends State<RoutinePage>{
+  RoutinePageState({required this.userdb});
 
   final Userdatabase userdb;
 
@@ -18,18 +36,12 @@ class RoutinePage2 extends StatelessWidget{
     return userdb.currentusername!;
   }
 
-  Routine routine1 = Routine("Rutina 1", "Practica estrategias con Reina Arquera", "null");
-  Routine routine2 = Routine("Rutina 2", "Practica Ataques Rapidos con Dragon", "null");
-  Routine routine3 = Routine("Rutina 3", "Mejora al menos 3 edificios a la semana", "null");
+  
   
   @override
   // ignore: avoid_renaming_method_parameters
   Widget build(BuildContext context_) {
-    return MaterialApp(
-      theme: ThemeData(
-        fontFamily: "clash"
-      ),
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 169, 169, 11)
         ),
@@ -63,18 +75,66 @@ class RoutinePage2 extends StatelessWidget{
                         ),
                         ListTile(
                           leading: const Icon(Icons.water),
-                          title: Text(routine1.title),
-                          subtitle: Text(routine1.descr),
+                          title: Text(userdb.currentUser!.getRoutinesFromGame(2)[0].title),
+                          subtitle: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              Text(userdb.currentUser!.getRoutinesFromGame(2)[0].descr),
+                              Slider(
+                                value: userdb.currentUser!.getRoutinesFromGame(2)[0].progress,
+                                max: 100,
+                                divisions: 100,
+                                label: userdb.currentUser!.getRoutinesFromGame(2)[0].progress.round().toString(),
+                                onChanged: (double value) {
+                                  setState(() {
+                                    userdb.currentUser!.getRoutinesFromGame(2)[0].changeProgress = value;
+                                  });
+                                }
+                              )
+                            ],
+                          ),
                         ),
                         ListTile(
-                          leading: const Icon(Icons.work),
-                          title: Text(routine2.title),
-                          subtitle: Text(routine2.descr),
+                          leading: const Icon(Icons.water),
+                          title: Text(userdb.currentUser!.getRoutinesFromGame(2)[1].title),
+                          subtitle: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              Text(userdb.currentUser!.getRoutinesFromGame(2)[1].descr),
+                              Slider(
+                                value: userdb.currentUser!.getRoutinesFromGame(2)[1].progress,
+                                max: 100,
+                                divisions: 100,
+                                label: userdb.currentUser!.getRoutinesFromGame(2)[1].progress.round().toString(),
+                                onChanged: (double value) {
+                                  setState(() {
+                                    userdb.currentUser!.getRoutinesFromGame(2)[1].changeProgress = value;
+                                  });
+                                }
+                              )
+                            ],
+                          ),
                         ),
                         ListTile(
-                          leading: const Icon(Icons.rowing),
-                          title: Text(routine3.title),
-                          subtitle: Text(routine3.descr),
+                          leading: const Icon(Icons.water),
+                          title: Text(userdb.currentUser!.getRoutinesFromGame(2)[2].title),
+                          subtitle: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              Text(userdb.currentUser!.getRoutinesFromGame(2)[2].descr),
+                              Slider(
+                                value: userdb.currentUser!.getRoutinesFromGame(2)[2].progress,
+                                max: 100,
+                                divisions: 100,
+                                label: userdb.currentUser!.getRoutinesFromGame(2)[2].progress.round().toString(),
+                                onChanged: (double value) {
+                                  setState(() {
+                                    userdb.currentUser!.getRoutinesFromGame(2)[2].changeProgress = value;
+                                  });
+                                }
+                              )
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 10,),
                         const Row(
@@ -100,7 +160,7 @@ class RoutinePage2 extends StatelessWidget{
                                   foregroundColor: Theme.of(context).colorScheme.inversePrimary,
                                   elevation: 1,
                               ),
-                              onPressed: () {Navigator.pop(context_);},
+                              onPressed: () {Navigator.pop(context);},
                               child: const Text(
                                 'Salir', 
                                 textScaler: TextScaler.linear(1.5),
@@ -118,7 +178,6 @@ class RoutinePage2 extends StatelessWidget{
             ],
           ),
         )
-      )
-    );
+      );
   }
 }

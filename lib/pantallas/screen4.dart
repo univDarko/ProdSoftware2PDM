@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prod_software_rutinator/data/userdatabase.dart';
-import 'package:prod_software_rutinator/pantallas/routinepage3.dart';
+import 'package:prod_software_rutinator/pantallas/routinepage4.dart';
 
 // ignore: must_be_immutable
 class Screen4 extends StatelessWidget{
@@ -46,18 +46,27 @@ class Screen4 extends StatelessWidget{
                         ),
                         const SizedBox(height: 30),
                         Container(
-                          padding: const EdgeInsets.all(10),
-                          child: TextField(
-                            style: const TextStyle(color: Colors.black),
-                            controller: clashRApiController,
-                            decoration: const InputDecoration(
-                              fillColor: Colors.white,
-                              filled: true,
-                              border: OutlineInputBorder(),
-                              labelText: 'Codigo de Usuario',
-                              //errorText: brawlApiController.text.isEmpty ? "Añada su Nombre de Usuario" : null,
+                          padding: const EdgeInsets.all(5),
+                          height: 150,
+                          child: Card(
+                            child: Column(
+                              children: [
+                                const SizedBox(height: 30),
+                                Text(
+                                  userdb.currentUser!.getRoutinesFromGame(4)[0].descr,
+                                  textAlign: TextAlign.center,
+                                  textScaler: const TextScaler.linear(1.3),
+                                  ),
+                                Slider(
+                                  value: userdb.currentUser!.getRoutinesFromGame(4)[0].progress,
+                                  max: 100,
+                                  divisions: 100,
+                                  label: userdb.currentUser!.getRoutinesFromGame(4)[0].progress.round().toString(),
+                                  onChanged: null
+                                )
+                              ],
                             ),
-                          ),
+                          )
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -65,7 +74,7 @@ class Screen4 extends StatelessWidget{
                               elevation: 1,
                               minimumSize: const Size(100, 50)
                           ),
-                          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => RoutinePage3(userdb: userdb,)));},
+                          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => RoutinePage4(userdb: userdb,)));},
                           child: const Text('Crear Rutinas', textScaler: TextScaler.linear(1.5),),
                         ),
                       ],

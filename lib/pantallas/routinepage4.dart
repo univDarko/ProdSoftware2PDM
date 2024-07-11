@@ -1,17 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:prod_software_rutinator/data/routine.dart';
 import 'package:prod_software_rutinator/data/userdatabase.dart';
 
 //SquadBusters
-const String clashroyaleinfo = "Clash Royale es un videojuego de estrategia en "
-"línea para dispositivos móviles, creado por Supercell. Fue lanzado "
-"globalmente el 2 de marzo de 2016. Es un videojuego freemium de estrategia en tiempo real basado "
-"en los personajes de Clash of Clans. Combina elementos de los juegos de cartas coleccionables y "
-"defensa de torres.";
+const String squadbustersinfo = "Squad Busters es un videojuego móvil desarrollado por Supercell. "
+"Squad Busters incluye personajes de los juegos de Supercell: Clash of Clans, Hay Day, Boom Beach, Clash Royale y Brawl Stars. "
+"Fue lanzado por primera vez en fase beta el 6 de febrero de 2023 en Canadá y en dispositivos Android, durante 10 días. "
+"El 25 de abril de 2024, Supercell anunció el lanzamiento global del juego para el 29 de mayo de 2024, " 
+"convirtiéndose en el sexto videojuego móvil de la compañía en ser lanzado mundialmente.";
+
+class RoutinePage4 extends StatelessWidget{
+  const RoutinePage4({super.key, required this.userdb});
+  final Userdatabase userdb;
+
+  @override
+  Widget build(BuildContext context){
+    return RoutinePage(userdb: userdb,);
+  }
+}
+
+class RoutinePage extends StatefulWidget{
+  const RoutinePage({super.key, required this.userdb});
+  final Userdatabase userdb;
+
+  @override
+  // ignore: no_logic_in_create_state
+  State<RoutinePage> createState() => RoutinePageState(userdb: userdb,);
+}
 
 // ignore: must_be_immutable
-class RoutinePage4 extends StatelessWidget{
-  RoutinePage4({super.key, required this.userdb});
+class RoutinePageState extends State<RoutinePage>{
+  RoutinePageState({required this.userdb});
 
   final Userdatabase userdb;
 
@@ -19,20 +37,12 @@ class RoutinePage4 extends StatelessWidget{
     return userdb.currentusername!;
   }
 
-  Routine routine1 = Routine("Rutina 1", "Practica Predicción con Flechas", "null");
-  Routine routine2 = Routine("Rutina 2", "Practica Ofensivas con Globo y Leñador", "null");
-  Routine routine3 = Routine("Rutina 3", "Practica Defensivas con Torre Tesla", "null");
-  
   @override
   // ignore: avoid_renaming_method_parameters
   Widget build(BuildContext context_) {
-    return MaterialApp(
-      theme: ThemeData(
-        fontFamily: "squad"
-      ),
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 33, 117, 251)
+          backgroundColor: Color.fromARGB(255, 255, 251, 5)
         ),
         body: LayoutBuilder(
           builder: (context, constraints) => ListView(
@@ -51,7 +61,7 @@ class RoutinePage4 extends StatelessWidget{
                         const SizedBox(
                           height: 80,
                           child: Text(
-                            "Carta favorita: Montapuercos",
+                            "Personaje Favorito: Chicken",
                             textScaler: TextScaler.linear(2),
                             textAlign: TextAlign.center,
                             textWidthBasis: TextWidthBasis.longestLine,
@@ -60,22 +70,70 @@ class RoutinePage4 extends StatelessWidget{
                         SizedBox(
                           width: 300,
                           height: 300,
-                          child: Image.asset("assets/CRAssets/cardexample.png")
+                          child: Image.asset("assets/SBAssets/characterexample.png")
                         ),
                         ListTile(
                           leading: const Icon(Icons.water),
-                          title: Text(routine1.title),
-                          subtitle: Text(routine1.descr),
+                          title: Text(userdb.currentUser!.getRoutinesFromGame(4)[0].title),
+                          subtitle: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              Text(userdb.currentUser!.getRoutinesFromGame(4)[0].descr),
+                              Slider(
+                                value: userdb.currentUser!.getRoutinesFromGame(4)[0].progress,
+                                max: 100,
+                                divisions: 100,
+                                label: userdb.currentUser!.getRoutinesFromGame(4)[0].progress.round().toString(),
+                                onChanged: (double value) {
+                                  setState(() {
+                                    userdb.currentUser!.getRoutinesFromGame(4)[0].changeProgress = value;
+                                  });
+                                }
+                              )
+                            ],
+                          ),
                         ),
                         ListTile(
-                          leading: const Icon(Icons.work),
-                          title: Text(routine2.title),
-                          subtitle: Text(routine2.descr),
+                          leading: const Icon(Icons.water),
+                          title: Text(userdb.currentUser!.getRoutinesFromGame(4)[1].title),
+                          subtitle: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              Text(userdb.currentUser!.getRoutinesFromGame(4)[1].descr),
+                              Slider(
+                                value: userdb.currentUser!.getRoutinesFromGame(4)[1].progress,
+                                max: 100,
+                                divisions: 100,
+                                label: userdb.currentUser!.getRoutinesFromGame(4)[1].progress.round().toString(),
+                                onChanged: (double value) {
+                                  setState(() {
+                                    userdb.currentUser!.getRoutinesFromGame(4)[1].changeProgress = value;
+                                  });
+                                }
+                              )
+                            ],
+                          ),
                         ),
                         ListTile(
-                          leading: const Icon(Icons.rowing),
-                          title: Text(routine3.title),
-                          subtitle: Text(routine3.descr),
+                          leading: const Icon(Icons.water),
+                          title: Text(userdb.currentUser!.getRoutinesFromGame(4)[2].title),
+                          subtitle: ListView(
+                            shrinkWrap: true,
+                            children: [
+                              Text(userdb.currentUser!.getRoutinesFromGame(4)[2].descr),
+                              Slider(
+                                value: userdb.currentUser!.getRoutinesFromGame(4)[2].progress,
+                                max: 100,
+                                divisions: 100,
+                                label: userdb.currentUser!.getRoutinesFromGame(4)[2].progress.round().toString(),
+                                onChanged: (double value) {
+                                  setState(() {
+                                    userdb.currentUser!.getRoutinesFromGame(4)[2].changeProgress = value;
+                                  });
+                                }
+                              )
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 10,),
                         const Row(
@@ -86,7 +144,7 @@ class RoutinePage4 extends StatelessWidget{
                         ),
                         const SizedBox(height: 50,),
                         const Text(
-                          clashroyaleinfo,
+                          squadbustersinfo,
                           textScaler: TextScaler.linear(1.5),
                           textAlign: TextAlign.justify,
                           textWidthBasis: TextWidthBasis.parent,
@@ -101,7 +159,7 @@ class RoutinePage4 extends StatelessWidget{
                                   foregroundColor: Theme.of(context).colorScheme.inversePrimary,
                                   elevation: 1,
                               ),
-                              onPressed: () {Navigator.pop(context_);},
+                              onPressed: () {Navigator.pop(context);},
                               child: const Text(
                                 'Volver', 
                                 textScaler: TextScaler.linear(1.5),
@@ -119,7 +177,6 @@ class RoutinePage4 extends StatelessWidget{
             ],
           ),
         )
-      )
     );
   }
 }

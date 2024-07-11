@@ -3,8 +3,12 @@ import 'package:prod_software_rutinator/pantallas/main_screen.dart';
 import 'package:prod_software_rutinator/data/user.dart';
 import 'package:prod_software_rutinator/data/userdatabase.dart';
 
+const Userdatabase? userdb = null;
+
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({super.key, required this.userdb});
+
+  final Userdatabase userdb;
  
   @override
   Widget build(BuildContext context) {
@@ -15,26 +19,31 @@ class LoginScreen extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow),
         useMaterial3: true,
       ),
-      home: const StatefulLoginPage(),
+      home: StatefulLoginPage(userdb: userdb,),
     );
   }
 }
  
 class StatefulLoginPage extends StatefulWidget {
-  const StatefulLoginPage({super.key});
+  const StatefulLoginPage({super.key, required this.userdb});
+
+  final Userdatabase userdb;
  
   @override
-  State<StatefulLoginPage> createState() => _MyStatefulLoginPage();
+  State<StatefulLoginPage> createState() => _MyStatefulLoginPage(userdb: userdb);
 }
  
 class _MyStatefulLoginPage extends State<StatefulLoginPage> {
+
+  _MyStatefulLoginPage({required this.userdb});
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  final Userdatabase userdb;
+
   bool isUsernameEmpty = false;
   bool isPasswordEmpty = false;
-
-  Userdatabase userdata = Userdatabase();
+  bool wrongPass = false;
 
   bool checkEmptyField(){
     setState(() {
@@ -47,6 +56,25 @@ class _MyStatefulLoginPage extends State<StatefulLoginPage> {
     else{
       return true;
     } 
+  }
+
+  String? userErrMsgs(){
+    if (isUsernameEmpty){
+      return "Añada su Nombre de Usuario";
+    }
+    return null;
+  }
+
+  String? passErrMsgs(){
+    if (isPasswordEmpty){
+      return "Escriba su Contraseña";
+    }
+
+    if (wrongPass){
+      return "Contraseña Incorrecta";
+    }
+
+    return null;
   }
  
   @override
@@ -90,7 +118,7 @@ class _MyStatefulLoginPage extends State<StatefulLoginPage> {
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     labelText: 'Nombre de Usuario',
-                    errorText: isUsernameEmpty ? "Añada su Nombre de Usuario" : null,
+                    errorText: userErrMsgs(),
                   ),
                 ),
               ),
@@ -102,7 +130,7 @@ class _MyStatefulLoginPage extends State<StatefulLoginPage> {
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     labelText: 'Contraseña',
-                    errorText: isPasswordEmpty ? "Añada la Contraseña" : null,
+                    errorText: passErrMsgs(),
                   ),
                 ),
               ),
@@ -119,10 +147,27 @@ class _MyStatefulLoginPage extends State<StatefulLoginPage> {
                   child: const Text('Iniciar Sesión'),
                   onPressed: () {
                     if (checkEmptyField()){
-                      User newuser = User('none', 'none2', nameController.text, 'none', passwordController.text);
-                      userdata.addUser(newuser);
-                      userdata.setCurrentUser(newuser);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(userdb: userdata)));
+                      wrongPass = false;
+                      User newuser = User(nameController.text, 'none', passwordController.text);
+                      if (userdb.checkIfExists(newuser)){
+                        print(newuser.username);
+                        print("Existe");
+                        if (userdb.checkIfCorrectPass(newuser, passwordController.text)){
+                          print("Contraseña correcta.");
+                          userdb.setCurrentUser(newuser);
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(userdb: userdb)));
+                        }
+                        else{
+                          print("Contraseña incorrecta.");
+                          wrongPass = true;
+                        }
+                      }
+                      else{
+                        print("Usuario no existe. Creando.");
+                        userdb.addUser(newuser);
+                        userdb.setCurrentUser(newuser);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => MainScreen(userdb: userdb)));
+                      }
                     }
                   },
                 )

@@ -6,7 +6,7 @@ Se tendrán 4 juegos de Supercell para crear rutinas y todo, siendo estos Clash 
 
 ## Link a Video
 
-(Nuevo video pronto)
+https://github.com/user-attachments/assets/6d859d41-4b71-488a-8769-76679fa03b50
 
 ## Requerimientos Funcionales
 

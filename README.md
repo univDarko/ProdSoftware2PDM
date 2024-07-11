@@ -34,5 +34,10 @@ Se tendrán 4 juegos de Supercell para crear rutinas y todo, siendo estos Clash 
 
 ![image](https://github.com/univDarko/ProdSoftware2PDM/assets/118616932/f3237a63-4b34-4607-9d5c-921f96e4bf6b)
 
+## Paleta de Colores utilizada
+
+![palette](https://github.com/user-attachments/assets/284e24a8-e88f-4c90-88c8-e18b095f231d)
+
+
 
 
